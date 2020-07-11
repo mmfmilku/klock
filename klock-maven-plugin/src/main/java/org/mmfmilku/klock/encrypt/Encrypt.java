@@ -12,6 +12,7 @@ public class Encrypt {
 
     static final String ENCODE = "UTF-8";
 
+    // DES对称加密
     static final String DES = "DES";
 
     public static byte[] encrypt(byte[] data) {
