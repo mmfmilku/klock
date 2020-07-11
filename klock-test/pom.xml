@@ -12,6 +12,7 @@
     <artifactId>klock-test</artifactId>
 
     <properties>
+
     </properties>
 
     <dependencies>
@@ -23,6 +24,23 @@
                 <groupId>org.mmfmilku.klock</groupId>
                 <artifactId>klock-maven-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
+                <configuration>
+                    <encryptDirs>
+                        <encryptDir>MainTest</encryptDir>
+                        <encryptDir>ccc</encryptDir>
+                        <encryptDir>ddd</encryptDir>
+                    </encryptDirs>
+<!--                    <fullEncrypt>true</fullEncrypt>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>e1</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>kencrypt</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
