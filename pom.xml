@@ -21,6 +21,7 @@
     <modules>
         <module>klock-test</module>
         <module>klock-core</module>
+        <module>klock-common</module>
         <module>klock-maven-plugin</module>
     </modules>
 

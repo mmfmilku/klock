@@ -7,13 +7,12 @@ import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
+
 import org.mmfmilku.klock.encrypt.Base64Util;
 import org.mmfmilku.klock.file.FileUtil;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.List;
 import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;

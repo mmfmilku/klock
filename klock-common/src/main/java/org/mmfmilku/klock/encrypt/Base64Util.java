@@ -1,6 +1,5 @@
 package org.mmfmilku.klock.encrypt;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 

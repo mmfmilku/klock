@@ -26,6 +26,11 @@
             <version>3.5</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mmfmilku.klock</groupId>
+            <artifactId>klock-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>
