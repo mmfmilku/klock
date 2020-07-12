@@ -6,7 +6,8 @@ public class FileUtil {
 
     private static final String ROOT_PATH = System.getProperty("user.dir") + File.separator;
 
-    //...
+    private static final String JAVA_PATH = "src\\main\\java\\";
+
     private static final String RESOURCES_PATH = "src\\main\\resources\\";
 
     public static byte[] getResources(String path) {
@@ -31,42 +32,12 @@ public class FileUtil {
             e.printStackTrace();
         }
         return data;
-//        ByteArrayOutputStream out = null;
-//        try {
-//            in = new FileInputStream(f);
-//            out = new ByteArrayOutputStream();
-//            byte[] buffer = new byte[1024];
-//            int size = 0;
-//            while ((size = in.read(buffer)) != -1)
-//                out.write(buffer, 0, size);
-//            data = out.toByteArray();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e2) {
-//            e2.printStackTrace();
-//        } finally {
-//            if (in != null) {
-//                try {
-//                    in.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            if (out != null) {
-//                try {
-//                    out.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return data;
     }
 
     public static byte[] readFromStream(InputStream in) {
         byte[] data = null;
         if (in == null)
-            throw new NullPointerException();
+            throw new NullPointerException("null InputStream");
         ByteArrayOutputStream out = null;
         try {
             out = new ByteArrayOutputStream();

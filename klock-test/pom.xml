@@ -21,10 +21,16 @@
             <artifactId>commons-codec</artifactId>
             <version>1.14</version>
         </dependency>
+        <dependency>
+            <groupId>org.mmfmilku.klock</groupId>
+            <artifactId>klock-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- 引入自定义插件 -->
             <plugin>
                 <groupId>org.mmfmilku.klock</groupId>
                 <artifactId>klock-maven-plugin</artifactId>
@@ -35,7 +41,7 @@
                         <encryptDir>ccc</encryptDir>
                         <encryptDir>ddd</encryptDir>
                     </encryptDirs>
-<!--                    <fullEncrypt>true</fullEncrypt>-->
+                    <fullEncrypt>true</fullEncrypt>
                 </configuration>
                 <executions>
                     <execution>
@@ -46,6 +52,21 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- 设置jar包启动主类 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!-- 此处为程序主入口-->
+                            <mainClass>org.mmfmilku.klock.MainTest</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
