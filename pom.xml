@@ -23,6 +23,7 @@
         <module>klock-core</module>
         <module>klock-common</module>
         <module>klock-maven-plugin</module>
+        <module>klock-agent</module>
     </modules>
 
     <dependencies>

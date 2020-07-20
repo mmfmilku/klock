@@ -6,13 +6,13 @@ public class FileUtil {
 
     private static final String ROOT_PATH = System.getProperty("user.dir") + File.separator;
 
-    private static final String JAVA_PATH = "src\\main\\java\\";
-
     private static final String RESOURCES_PATH = "src\\main\\resources\\";
 
     public static byte[] getResources(String path) {
         return getFileData(ROOT_PATH + RESOURCES_PATH + path);
     }
+
+    
 
     /*加载文件数据*/
     public static byte[] getFileData(String filePath) {
