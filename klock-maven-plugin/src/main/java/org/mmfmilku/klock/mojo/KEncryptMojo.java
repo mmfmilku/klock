@@ -9,6 +9,7 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 import org.mmfmilku.klock.encrypt.Base64Util;
+import org.mmfmilku.klock.encrypt.Encrypt;
 import org.mmfmilku.klock.file.FileUtil;
 
 import java.io.*;
@@ -48,13 +49,25 @@ public class KEncryptMojo extends AbstractMojo {
     @Parameter
     private Set<String> encryptDirs;
 
+    // 加密算法
+    @Parameter(defaultValue = "DES")
+    private String algorithm;
+
+    // 加密密钥
+    @Parameter(defaultValue = "klock-key")
+    private String key;
+
+    // 加密后的包名
+    @Parameter(defaultValue = "encrypt-out")
+    private String encryptName;
+
     private Log logger = getLog();
 
     private static final String fileHead = "klock";
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        System.out.println("fullEncrypt::" + fullEncrypt);
+        System.out.println("fullEncrypt:" + fullEncrypt);
         System.out.println(encryptDirs.toString());
 
         String filePath = buildDir + fileSeparator + finalName + "." + packaging;
@@ -66,7 +79,7 @@ public class KEncryptMojo extends AbstractMojo {
             return;
         }
 
-        File outFile = new File(buildDir + fileSeparator + "test-out.jar");
+        File outFile = new File(buildDir + fileSeparator + encryptName + "." + packaging);
 
         JarFile jarFile = null;
         OutputStream out = null;
@@ -90,7 +103,10 @@ public class KEncryptMojo extends AbstractMojo {
                 if (fileName.endsWith(".class") &&
                         (fullEncrypt || encryptDirs.contains(fileName.substring(0, fileName.indexOf(".class"))))) {
                     System.out.println("encrypt file:" + fileName);
-                    data = Base64Util.encode(data);
+//                    data = Base64Util.encode(data);
+                    // 目前为DES加密
+//                    System.out.println("密钥：" + key);
+                    data = Encrypt.encrypt(data, key);
                 }
 //                String base64Str = new String(base64);
 //                System.out.println("文件内容:" + new String(Base64Util.decode(base64Str.getBytes())));
