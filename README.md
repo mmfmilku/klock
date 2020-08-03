@@ -1,50 +1,51 @@
-本项目为对编译完成后打包的java类文件加密，防止包被反编译破解查看
+本项目为对编译完成后打包的java类文件加密，防止包被反编译破解查看，项目打包时设置密钥，项目启动时需要输入密钥才可启动
 目前支持jar包
 
 ##### 使用方法：
 添加klock-maven-plugin插件，并配置密钥
 ```
-            <plugin>
-                 <groupId>org.mmfmilku.klock</groupId>
-                 <artifactId>klock-maven-plugin</artifactId>
-                 <version>1.0-SNAPSHOT</version>
-                 <configuration>
-                     <encryptDirs>
-                         <!-- 需要加密的类 -->
-                         <encryptDir>MainTest</encryptDir>
-                         <encryptDir>ccc</encryptDir>
-                         <encryptDir>ddd</encryptDir>
-                     </encryptDirs>
-                     <!-- 是否加密所有类 -->
-                     <fullEncrypt>true</fullEncrypt>
-                     <!-- 加密后的包名 -->
-                     <encryptName>test-with-encrypt</encryptName>
-                     <!-- 配置密钥 -->
-                     <key>111222333</key>
-                 </configuration>
-                 <executions>
-                     <execution>
-                         <id>e1</id>
-                         <phase>package</phase>
-                         <goals>
-                             <goal>kencrypt</goal>
-                         </goals>
-                     </execution>
-                 </executions>
-             </plugin>`
+<plugin>
+     <groupId>org.mmfmilku.klock</groupId>
+     <artifactId>klock-maven-plugin</artifactId>
+     <version>1.0-SNAPSHOT</version>
+     <configuration>
+         <encryptDirs>
+             <!-- 需要加密的类 -->
+             <encryptDir>MainTest</encryptDir>
+             <encryptDir>ccc</encryptDir>
+             <encryptDir>ddd</encryptDir>
+         </encryptDirs>
+         <!-- 是否加密所有类 -->
+         <fullEncrypt>true</fullEncrypt>
+         <!-- 加密后的包名 -->
+         <encryptName>test-with-encrypt</encryptName>
+         <!-- 配置密钥 -->
+         <key>111222333</key>
+     </configuration>
+     <executions>
+         <execution>
+             <id>e1</id>
+             <phase>package</phase>
+             <goals>
+                 <goal>kencrypt</goal>
+             </goals>
+         </execution>
+     </executions>
+ </plugin>`
 ```
 执行maven后将出现加密后的包
 
 使用以下命令执行程序
 ```
-java -"Dklock.key"="123456abc" 
+java 
+-"Dklock.key"="123456abc" 
 -javaagent:.\klock-agent-1.0-SNAPSHOT.jar 
 -classpath .\lib\*
 -jar .\test-with-encrypt.jar 
 ```
--"Dklock.key"="123456abc"表示解密密钥为123456abc
+-"Dklock.key"="123456abc" 设置解密密钥为123456abc
 
--javaagent:.\klock-agent-1.0-SNAPSHOT.jar
+-javaagent:.\klock-agent-1.0-SNAPSHOT.jar 指定解密包路径
 
 
 ---
